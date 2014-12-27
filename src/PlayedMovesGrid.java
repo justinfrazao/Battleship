@@ -2,7 +2,7 @@ import java.awt.Point;
 
 public class PlayedMovesGrid {
 	
-	public enum CellState {
+	public static enum CellState {
 	    Unplayed, 
 	    Missed, 
 	    Hit

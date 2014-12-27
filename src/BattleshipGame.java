@@ -1,4 +1,5 @@
 import java.awt.Point;
+import static java.lang.Math.*;
 
 public class BattleshipGame {
 	
@@ -16,6 +17,7 @@ public class BattleshipGame {
 		else {
 			array = player2Ships;
 		}
+		
 		for(int i = 0; i < array.length; i++) {
 			if(array[i] == null) {
 				array[i] = s;
@@ -25,6 +27,37 @@ public class BattleshipGame {
 	}
 	
 	public void fireMissile(int player, Point p) {
+		Ship[] array;
+		PlayedMovesGrid grid;
+		if (player == 1) {
+			array = player2Ships;
+			grid = player1PlayedMovesGrid;
+		}
+		else {
+			array = player1Ships;
+			grid = player2PlayedMovesGrid;
+		}
 		
+		for(int i = 0; i < array.length; i++) {
+			Point first = array[i].getFirstCoordinate();
+			Point last = array[i].getLastCoordinate();
+			
+			double lowerBoundX = Math.min(first.getX(), last.getX());
+			double upperBoundX = Math.max(first.getX(), last.getX());
+			double lowerBoundY = Math.min(first.getY(), last.getY());
+			double upperBoundY = Math.max(first.getY(), last.getY());
+			
+			if (p.getX() >= lowerBoundX && p.getX() <= upperBoundX &&
+				p.getY() >= lowerBoundY && p.getY() <= upperBoundY) {
+				grid.setCellState(p, PlayedMovesGrid.CellState.Hit);
+				System.out.println("Hit!");
+				break;
+			}
+			else {
+				grid.setCellState(p, PlayedMovesGrid.CellState.Missed);
+				System.out.println("Miss!");
+				break;
+			}
+		}
 	}
 }

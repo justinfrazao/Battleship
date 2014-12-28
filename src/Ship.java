@@ -11,7 +11,7 @@ public class Ship {
 			lastCoordinate = b;
 		}
 		else {
-			System.out.println("ERROR!!!");
+			System.out.println("Error! The ship is not vertical or horizontal.");
 		}
 	}
 	

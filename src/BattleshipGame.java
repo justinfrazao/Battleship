@@ -19,9 +19,36 @@ public class BattleshipGame {
 		}
 		
 		for(int i = 0; i < array.length; i++) {
-			if(array[i] == null) {
+			
+			if (array[i] == null) {
 				array[i] = s;
 				break;
+			}
+			else {
+				Point firstPointAdded = s.getFirstCoordinate();
+				Point lastPointAdded = s.getLastCoordinate();
+			
+				Point firstPointExisting = array[i].getFirstCoordinate();
+				Point lastPointExisting = array[i].getLastCoordinate();
+			
+				double lowerBoundXAdded = Math.min(firstPointAdded.getX(), lastPointAdded.getX());
+				double upperBoundXAdded = Math.max(firstPointAdded.getX(), lastPointAdded.getX());
+				double lowerBoundYAdded = Math.min(firstPointAdded.getY(), lastPointAdded.getY());
+				double upperBoundYAdded = Math.max(firstPointAdded.getY(), lastPointAdded.getY());
+				
+				double lowerBoundXExisting = Math.min(firstPointExisting.getX(), lastPointExisting.getX());
+				double upperBoundXExisting = Math.max(firstPointExisting.getX(), lastPointExisting.getX());
+				double lowerBoundYExisting = Math.min(firstPointExisting.getY(), lastPointExisting.getY());
+				double upperBoundYExisting = Math.max(firstPointExisting.getY(), lastPointExisting.getY());
+				
+				if (lowerBoundXAdded <= upperBoundXExisting &&
+					upperBoundXAdded >= lowerBoundXExisting &&
+					lowerBoundYAdded <= upperBoundYExisting &&
+					upperBoundYAdded >= lowerBoundYExisting) {
+				
+					System.out.println("Error! This ship overlaps another ship.");
+					break;
+				}
 			}
 		}
 	}

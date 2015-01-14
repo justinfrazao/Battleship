@@ -35,6 +35,7 @@ public class Main {
 	}
 	private static Point pointFromString(String coordsString) {
 		
+		coordsString = coordsString.replace(" ", "");
 		int commaLocation = coordsString.indexOf(',');
 		int endLocation = coordsString.indexOf(')');
 		String firstCoordString = coordsString.substring(1, commaLocation);

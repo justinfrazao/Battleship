@@ -5,7 +5,7 @@ public class Ship {
 	private Point firstCoordinate;
 	private Point lastCoordinate;
 	
-	public Ship(Point a, Point b){
+	public Ship(Point a, Point b) {
 		if (a.x == b.x || a.y == b.y) {	
 			firstCoordinate = a;
 			lastCoordinate = b;
